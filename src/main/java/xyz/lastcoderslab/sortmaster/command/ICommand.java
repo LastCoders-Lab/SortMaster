@@ -1,11 +1,11 @@
 package xyz.lastcoderslab.sortmaster.command;
 
-public interface Command {
+public interface ICommand {
     String getName();
 
     String getDescription();
 
     boolean execute();
 
-    void help();
+    String help();
 }
