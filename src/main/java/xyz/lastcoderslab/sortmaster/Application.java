@@ -3,11 +3,13 @@ package xyz.lastcoderslab.sortmaster;
 import xyz.lastcoderslab.sortmaster.command.ExitCommand;
 import xyz.lastcoderslab.sortmaster.command.GenerateCommand;
 import xyz.lastcoderslab.sortmaster.command.ICommand;
+import xyz.lastcoderslab.sortmaster.command.SortCommand;
 import xyz.lastcoderslab.sortmaster.manager.DataManager;
 import xyz.lastcoderslab.sortmaster.manager.SortManager;
 import xyz.lastcoderslab.sortmaster.tools.Message;
 import xyz.lastcoderslab.sortmaster.tools.MessageType;
 
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -24,6 +26,8 @@ public class Application {
         sortManager = new SortManager();
 
         commands.put("/generate", new GenerateCommand(dataManager));
+        commands.put("/sort", new SortCommand(sortManager));
+        commands.put("/result", new SortCommand(sortManager));
         commands.put("/exit", new ExitCommand());
 
         dialog();
@@ -32,14 +36,28 @@ public class Application {
     private void dialog() {
         System.out.println(help());
         sc = new Scanner(System.in);
+
         do {
             sc = new Scanner(System.in);
-            cmd = sc.nextLine();
-            if(commands.containsKey(cmd)) {
-                commands.get(cmd).execute();
+            String commandLine = sc.nextLine();
+            String[] args;
+            args = commandLine.split(" ");
+            if (!args[0].startsWith("/")) {
+                Message.send(Message.get("Неверный формат команды", MessageType.ERROR));
             }
             else {
-                Message.send(Message.get("Unknown command", MessageType.ERROR));
+                cmd = args[0];
+                if(args.length > 1) {
+                    args = Arrays.copyOfRange(args,1, args.length);
+                }
+                else args = new String[0];
+
+                if(commands.containsKey(cmd)) {
+                    commands.get(cmd).execute(args);
+                }
+                else {
+                    Message.send(Message.get("Неизвесная команда", MessageType.ERROR));
+                }
             }
         }
         while (! cmd.equals("/exit"));
@@ -48,7 +66,7 @@ public class Application {
     public String help() {
         String s =Message.get("Доступные команды:\n", MessageType.MAIN);
         for(String cmdKey : commands.keySet()) {
-            s += cmdKey + " - " + commands.get(cmdKey).getDescription() + "\n";
+            s += commands.get(cmdKey).help();
         }
         return s;
     }

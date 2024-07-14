@@ -1,24 +1,29 @@
 package xyz.lastcoderslab.sortmaster.command;
 
-import xyz.lastcoderslab.sortmaster.tools.Message;
-import xyz.lastcoderslab.sortmaster.tools.MessageType;
+import xyz.lastcoderslab.sortmaster.manager.SortManager;
 import xyz.lastcoderslab.sortmaster.tools.TextColor;
 
-public class ExitCommand implements ICommand{
+public class SortCommand implements ICommand{
+
+    private final SortManager sortManager;
+
+    public SortCommand(SortManager sortManager) {
+        this.sortManager = sortManager;
+    }
+
     @Override
     public String getName() {
-        return "/exit";
+        return "/sort";
     }
 
     @Override
     public String getDescription() {
-        return "Выход";
+        return "Выполнить сортировку";
     }
 
     @Override
     public boolean execute(String[] args) {
-        Message.send(Message.get("Bye!", MessageType.MAIN));
-        return true;
+        return false;
     }
 
     @Override

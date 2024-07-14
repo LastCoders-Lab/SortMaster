@@ -5,11 +5,11 @@ public class Message {
     public static String get(String text, MessageType type) {
         switch (type) {
             case MAIN:
-                return "\u001B[1;33m" + text + "\u001B[0m";
+                return TextColor.PURPLE + "" + TextColor.BOLD + text + TextColor.RESET;
             case NOTICE:
-                return "\u001B[32m" + text + "\u001B[0m" ;
+                return TextColor.GREEN + text + TextColor.RESET;
             case ERROR:
-                return "\u001B[91m" + text + "\u001B[0m";
+                return TextColor.RED + text + TextColor.RESET;
         }
         return text;
     }
@@ -23,4 +23,7 @@ public class Message {
         System.out.println(message);
     }
 
+    public static String formatHelp() {
+        return "";
+    }
 }

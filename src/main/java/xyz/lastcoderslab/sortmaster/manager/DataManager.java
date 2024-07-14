@@ -14,7 +14,6 @@ public class DataManager {
         }
     }
 
-
     public int[] getDataArray() {
         return dataArray;
     }
