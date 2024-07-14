@@ -23,7 +23,7 @@ public class Application {
 
     public void run(){
         dataManager = new DataManager();
-        sortManager = new SortManager();
+        sortManager = new SortManager(dataManager);
 
         commands.put("/generate", new GenerateCommand(dataManager));
         commands.put("/sort", new SortCommand(sortManager));
