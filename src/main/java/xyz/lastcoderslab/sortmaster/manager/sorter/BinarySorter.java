@@ -122,6 +122,6 @@ public class BinarySorter implements Sorter {
         System.out.println("Original Array: " + Arrays.toString(inputArray));
         System.out.println("Sorted Array: " + Arrays.toString(sortedArray));
         System.out.println("Swap Count: " + sorter.getSwapCount());
-        System.out.println("Sorting Time: " + sorter.getSortingTime());
+        System.out.println("Sorting Time (nanoseconds): " + sorter.getSortingTime());
     }
 }

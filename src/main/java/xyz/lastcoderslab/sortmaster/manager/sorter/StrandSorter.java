@@ -5,6 +5,9 @@ import java.util.Arrays;
 import java.util.List;
 
 public class StrandSorter implements Sorter {
+    private long startTime;
+    private long endTime;
+    private long swapCount;
 
     @Override
     public List<Integer> sort(List<Integer> inputList) {
@@ -45,25 +48,30 @@ public class StrandSorter implements Sorter {
 
     @Override
     public int[] sort(int[] inputArray) {
+        startTime = System.nanoTime();
         return innerSort(inputArray.clone());
     }
 
     public int[] innerSort(int[] inputArray) {
         if (inputArray.length <= 1) {
+            endTime = System.nanoTime();
             return inputArray;
         }
         int[] subarray = new int[1];
         subarray[0] = inputArray[0];
         inputArray = removeElement(inputArray, 0);
+        swapCount++;
         int i = 0;
         while (i < inputArray.length) {
             if (inputArray[i] > subarray[subarray.length - 1]) {
                 subarray = addElement(subarray, inputArray[i]);
                 inputArray = removeElement(inputArray, i);
+                swapCount++;
             } else {
                 i++;
             }
         }
+        endTime = System.nanoTime();
         return mergeArrays(subarray, innerSort(inputArray));
     }
 
@@ -100,21 +108,29 @@ public class StrandSorter implements Sorter {
         return result;
     }
 
+    public long getSortingTime() {
+        return endTime - startTime;
+    }
+
+    public long getSwapCount() {
+        return swapCount;
+    }
 
     public static void main(String[] args) {
-        StrandSorter sorter = new StrandSorter();
+        BinarySorter sorter = new BinarySorter();
         ArrayList<Integer> inputList = new ArrayList<>();
-        inputList.add(14);
-        inputList.add(73);
-        inputList.add(28);
-        inputList.add(42);
-        inputList.add(91);
-        inputList.add(19);
-        inputList.add(85);
-        inputList.add(67);
+        inputList.add(37);
+        inputList.add(23);
+        inputList.add(0);
+        inputList.add(17);
+        inputList.add(12);
+        inputList.add(72);
         inputList.add(31);
-        inputList.add(56);
-        inputList.add(98);
+        inputList.add(46);
+        inputList.add(100);
+        inputList.add(88);
+        inputList.add(54);
+
 
         List<Integer> sortedList = sorter.sort(inputList);
         System.out.println("Original List: " + inputList);
@@ -122,9 +138,13 @@ public class StrandSorter implements Sorter {
 
         System.out.println("-----------------------");
 
-        int[] inputArray = {37, 23, 0, 0, 0, 54, 31, 46, 54, 88, 54};
+//        int[] inputArray = {37, 23, 0, 0, 0, 54, 31, 46, 54, 88, 54};
+//        int[] inputArray = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
+        int[] inputArray = {11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
         int[] sortedArray = sorter.sort(inputArray);
         System.out.println("Original Array: " + Arrays.toString(inputArray));
         System.out.println("Sorted Array: " + Arrays.toString(sortedArray));
+        System.out.println("Swap Count: " + sorter.getSwapCount());
+        System.out.println("Sorting Time (nanoseconds): " + sorter.getSortingTime());
     }
 }
