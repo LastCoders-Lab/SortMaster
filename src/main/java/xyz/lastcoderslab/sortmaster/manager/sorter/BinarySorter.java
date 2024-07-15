@@ -49,9 +49,9 @@ public class BinarySorter implements Sorter {
     public int[] sort(int[] inputArray) {
         swapCount = 0;
         startTime = System.nanoTime();
-        int[] result = innerSort(inputArray.clone());
+        int[] sortedArray = innerSort(inputArray.clone());
         endTime = System.nanoTime();
-        return result;
+        return sortedArray;
     }
 
     private int[] innerSort(int[] array) {
@@ -71,15 +71,16 @@ public class BinarySorter implements Sorter {
             array[j + 1] = selected;
             swapCount++;
         }
+
         return array;
     }
 
-    static int binarySearch(int[] inputArray, int item, int left, int right) {
+    static int binarySearch(int[] array, int item, int left, int right) {
         while (left <= right) {
             int mid = left + (right - left) / 2;
-            if (item == inputArray[mid])
+            if (item == array[mid])
                 return mid + 1;
-            else if (item > inputArray[mid])
+            else if (item > array[mid])
                 left = mid + 1;
             else
                 right = mid - 1;
@@ -119,8 +120,10 @@ public class BinarySorter implements Sorter {
 //        System.out.println("-----------------------");
 
 //        int[] inputArray = {37, 23, 0, 0, 0, 54, 31, 46, 54, 88, 54};
-//        int[] inputArray = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
-        int[] inputArray = {11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
+//        int[] inputArray = {2, 1, 3, 4, 5, 6, 7, 8, 9, 10, 11};
+        int[] inputArray = {4, 3, 2, 1, 0, -1};
+
+//        int[] inputArray = {11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
         int[] sortedArray = sorter.sort(inputArray);
         System.out.println("Original Array: " + Arrays.toString(inputArray));
         System.out.println("Sorted Array: " + Arrays.toString(sortedArray));

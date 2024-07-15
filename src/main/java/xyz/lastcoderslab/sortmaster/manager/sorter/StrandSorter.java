@@ -50,28 +50,30 @@ public class StrandSorter implements Sorter {
     public int[] sort(int[] inputArray) {
         swapCount = 0;
         startTime = System.nanoTime();
-        int[] result = innerSort(inputArray.clone());
+        int[] sortedArray = innerSort(inputArray.clone());
         endTime = System.nanoTime();
-        return result;
+        return sortedArray;
     }
 
-    private int[] innerSort(int[] inputArray) {
-        if (inputArray.length <= 1) {
-            return inputArray;
+    private int[] innerSort(int[] array) {
+        if (array.length <= 1) {
+            return array;
         }
+
         int[] subarray = {};
-        subarray = addElement(subarray, inputArray[0]);
-        inputArray = removeElement(inputArray, 0);
+        subarray = addElement(subarray, array[0]);
+        array = removeElement(array, 0);
         int i = 0;
-        while (i < inputArray.length) {
-            if (inputArray[i] > subarray[subarray.length - 1]) {
-                subarray = addElement(subarray, inputArray[i]);
-                inputArray = removeElement(inputArray, i);
+        while (i < array.length) {
+            if (array[i] > subarray[subarray.length - 1]) {
+                subarray = addElement(subarray, array[i]);
+                array = removeElement(array, i);
             } else {
                 i++;
             }
         }
-        return mergeArrays(subarray, innerSort(inputArray));
+
+        return mergeArrays(subarray, innerSort(array));
     }
 
     private static int[] addElement(int[] array, int element) {
