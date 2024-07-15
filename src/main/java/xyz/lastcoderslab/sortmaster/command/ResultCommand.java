@@ -22,8 +22,8 @@ public class ResultCommand implements ICommand{
     }
 
     @Override
-    public boolean execute(String[] args) {
-        return false;
+    public void execute(String[] args) {
+
     }
 
     @Override

@@ -24,11 +24,10 @@ public class GenerateCommand implements ICommand{
     }
 
     @Override
-    public boolean execute(String[] args) {
+    public void execute(String[] args) {
         dataManager.createBySize(10);
         Message.send(Message.get("Ваш массив: " + Arrays.toString(dataManager.getDataArray())));
         Message.send(Message.get("Используйте его для последующих сортировок"));
-        return true;
     }
 
 

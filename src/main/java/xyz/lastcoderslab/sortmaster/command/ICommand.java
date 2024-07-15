@@ -9,7 +9,7 @@ public interface ICommand {
 
     String getDescription();
 
-    boolean execute(String[] args);
+    void execute(String[] args);
 
     //Map<String, String> arguments();
 

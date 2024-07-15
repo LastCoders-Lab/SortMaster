@@ -16,9 +16,8 @@ public class ExitCommand implements ICommand{
     }
 
     @Override
-    public boolean execute(String[] args) {
+    public void execute(String[] args) {
         Message.send(Message.get("Bye!", MessageType.MAIN));
-        return true;
     }
 
     @Override
