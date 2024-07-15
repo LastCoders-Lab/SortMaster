@@ -5,6 +5,10 @@ import java.util.Arrays;
 import java.util.List;
 
 public class BinarySorter implements Sorter {
+    private long startTime;
+    private long endTime;
+    private long swapCount;
+
     @Override
     public List<Integer> sort(List<Integer> inputList) {
         if (inputList.size() <= 1) {
@@ -44,20 +48,26 @@ public class BinarySorter implements Sorter {
 
     @Override
     public int[] sort(int[] inputArray) {
+        startTime = System.nanoTime();
         if (inputArray.length <= 1) {
+            endTime = System.nanoTime();
             return inputArray;
         }
         int[] result = inputArray.clone();
+        swapCount = 0;
         for (int i = 1; i < result.length; i++) {
             int selected = result[i];
             int j = i - 1;
             int location = binarySearch(result, selected, 0, j);
             while (j >= location) {
                 result[j + 1] = result[j];
+                swapCount++;
                 j--;
             }
             result[j + 1] = selected;
+            swapCount++;
         }
+        endTime = System.nanoTime();
         return result;
     }
 
@@ -75,6 +85,13 @@ public class BinarySorter implements Sorter {
         return left;
     }
 
+    public long getSortingTime() {
+        return endTime - startTime;
+    }
+
+    public long getSwapCount() {
+        return swapCount;
+    }
 
     public static void main(String[] args) {
         BinarySorter sorter = new BinarySorter();
@@ -98,9 +115,13 @@ public class BinarySorter implements Sorter {
 
         System.out.println("-----------------------");
 
-        int[] inputArray = {37, 23, 0, 0, 0, 54, 31, 46, 54, 88, 54};
+//        int[] inputArray = {37, 23, 0, 0, 0, 54, 31, 46, 54, 88, 54};
+//        int[] inputArray = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
+        int[] inputArray = {11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
         int[] sortedArray = sorter.sort(inputArray);
         System.out.println("Original Array: " + Arrays.toString(inputArray));
         System.out.println("Sorted Array: " + Arrays.toString(sortedArray));
+        System.out.println("Swap Count: " + sorter.getSwapCount());
+        System.out.println("Sorting Time: " + sorter.getSortingTime());
     }
 }
