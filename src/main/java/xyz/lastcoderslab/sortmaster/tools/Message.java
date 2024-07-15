@@ -5,7 +5,7 @@ public class Message {
     public static String get(String text, MessageType type) {
         switch (type) {
             case MAIN:
-                return TextColor.PURPLE + "" + TextColor.BOLD + text + TextColor.RESET;
+                return TextColor.BOLD + text + TextColor.RESET;
             case NOTICE:
                 return TextColor.GREEN + text + TextColor.RESET;
             case ERROR:

@@ -20,12 +20,12 @@ public class GenerateCommand implements ICommand{
 
     @Override
     public String getDescription() {
-        return "Создает новуый набор данных для сортировки";
+        return "Создает новый набор данных для сортировки";
     }
 
     @Override
     public void execute(String[] args) {
-        dataManager.createBySize(10);
+        dataManager.createIntArray(10);
         Message.send(Message.get("Ваш массив: " + Arrays.toString(dataManager.getDataArray())));
         Message.send(Message.get("Используйте его для последующих сортировок"));
     }

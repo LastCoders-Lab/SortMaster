@@ -2,9 +2,9 @@ package xyz.lastcoderslab.sortmaster.entity;
 
 public class DataObject implements Comparable{
 
-    private final int intValue;
-
     private final String stringValue;
+
+    private final int intValue;
 
     private final boolean booleanValue;
 
@@ -12,10 +12,6 @@ public class DataObject implements Comparable{
         this.intValue = intValue;
         this.stringValue = stringValue;
         this.booleanValue = booleanValue;
-    }
-
-    public static DataObjectBuilder builder() {
-        return new DataObjectBuilder();
     }
 
     @Override
@@ -36,7 +32,11 @@ public class DataObject implements Comparable{
         return booleanValue;
     }
 
-    private static class DataObjectBuilder {
+    public static DataObjectBuilder builder() {
+        return new DataObjectBuilder();
+    }
+
+    public static class DataObjectBuilder {
         private int intValue;
         private String stringValue;
         private boolean booleanValue;
@@ -61,4 +61,12 @@ public class DataObject implements Comparable{
         }
     }
 
+    @Override
+    public String toString() {
+        return "DataObject{" +
+                "stringValue='" + stringValue + '\'' +
+                ", intValue=" + intValue +
+                ", booleanValue=" + booleanValue +
+                '}';
+    }
 }

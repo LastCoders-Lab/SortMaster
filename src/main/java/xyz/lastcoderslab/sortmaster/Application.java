@@ -24,7 +24,7 @@ public class Application {
     public void run(){
         dataManager = new DataManager();
         sortManager = new SortManager(dataManager);
-
+        dataManager.createObjectsArray(10);
         commands.put("/generate", new GenerateCommand(dataManager));
         commands.put("/sort", new SortCommand(sortManager));
         commands.put("/result", new SortCommand(sortManager));
