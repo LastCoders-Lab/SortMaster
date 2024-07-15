@@ -42,7 +42,6 @@ public class BinarySorter implements Sorter {
     }
 
 
-
     @Override
     public int[] sort(int[] inputArray) {
         if (inputArray.length <= 1) {
@@ -77,7 +76,6 @@ public class BinarySorter implements Sorter {
     }
 
 
-
     public static void main(String[] args) {
         BinarySorter sorter = new BinarySorter();
         ArrayList<Integer> inputList = new ArrayList<>();
@@ -102,9 +100,7 @@ public class BinarySorter implements Sorter {
 
         int[] inputArray = {37, 23, 0, 0, 0, 54, 31, 46, 54, 88, 54};
         int[] sortedArray = sorter.sort(inputArray);
-        System.out.print("Original Array: ");
-        System.out.println(Arrays.toString(inputArray));
-        System.out.print("Sorted Array: ");
-        System.out.println(Arrays.toString(sortedArray));
+        System.out.println("Original Array: " + Arrays.toString(inputArray));
+        System.out.println("Sorted Array: " + Arrays.toString(sortedArray));
     }
 }
