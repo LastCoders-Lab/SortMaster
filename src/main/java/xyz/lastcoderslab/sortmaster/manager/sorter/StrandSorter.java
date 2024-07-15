@@ -40,4 +40,25 @@ public class StrandSorter implements Sorter {
         result.addAll(list2);
         return result;
     }
+
+    public static void main(String[] args) {
+        StrandSorter sorter = new StrandSorter();
+        ArrayList<Integer> inputList = new ArrayList<>();
+        inputList.add(14);
+        inputList.add(73);
+        inputList.add(28);
+        inputList.add(42);
+        inputList.add(91);
+        inputList.add(19);
+        inputList.add(85);
+        inputList.add(67);
+        inputList.add(31);
+        inputList.add(56);
+        inputList.add(98);
+
+        System.out.println("Original List: " + inputList);
+        List<Integer> sortedList = sorter.sort(inputList);
+        System.out.println("Original List: " + inputList);
+        System.out.println("Sorted List: " + sortedList);
+    }
 }
