@@ -1,6 +1,7 @@
 package xyz.lastcoderslab.sortmaster.manager.sorter;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class BinarySorter implements Sorter {
@@ -40,6 +41,43 @@ public class BinarySorter implements Sorter {
         return left;
     }
 
+
+
+    @Override
+    public int[] sort(int[] inputArray) {
+        if (inputArray.length <= 1) {
+            return inputArray;
+        }
+        int[] result = inputArray.clone();
+        for (int i = 1; i < result.length; i++) {
+            int selected = result[i];
+            int j = i - 1;
+            int location = binarySearch(result, selected, 0, j);
+            while (j >= location) {
+                result[j + 1] = result[j];
+                j--;
+            }
+            result[j + 1] = selected;
+        }
+        return result;
+    }
+
+    static int binarySearch(int[] inputArray, int item, int left, int right) {
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            if (item == inputArray[mid])
+                return mid + 1;
+            else if (item > inputArray[mid])
+                left = mid + 1;
+            else
+                right = mid - 1;
+        }
+
+        return left;
+    }
+
+
+
     public static void main(String[] args) {
         BinarySorter sorter = new BinarySorter();
         ArrayList<Integer> inputList = new ArrayList<>();
@@ -59,5 +97,14 @@ public class BinarySorter implements Sorter {
         List<Integer> sortedList = sorter.sort(inputList);
         System.out.println("Original List: " + inputList);
         System.out.println("Sorted List: " + sortedList);
+
+        System.out.println("-----------------------");
+
+        int[] inputArray = {37, 23, 0, 0, 0, 54, 31, 46, 54, 88, 54};
+        int[] sortedArray = sorter.sort(inputArray);
+        System.out.print("Original Array: ");
+        System.out.println(Arrays.toString(inputArray));
+        System.out.print("Sorted Array: ");
+        System.out.println(Arrays.toString(sortedArray));
     }
 }
