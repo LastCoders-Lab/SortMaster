@@ -14,7 +14,7 @@ public class StrandSorter implements Sorter {
         sublist.add(inputList.remove(0));
         int i = 0;
         while (i < inputList.size()) {
-            if(inputList.get(i) > sublist.get(sublist.size() - 1)) {
+            if (inputList.get(i) > sublist.get(sublist.size() - 1)) {
                 sublist.add(inputList.remove(i));
             } else {
                 i++;
