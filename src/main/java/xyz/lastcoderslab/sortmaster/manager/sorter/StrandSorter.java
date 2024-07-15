@@ -7,6 +7,11 @@ public class StrandSorter implements Sorter {
 
     @Override
     public List<Integer> sort(List<Integer> inputList) {
+        List<Integer> listCopy = new ArrayList<>(inputList);
+        return innerSort(listCopy);
+    }
+
+    private static List<Integer> innerSort(List<Integer> inputList) {
         if (inputList.size() <= 1) {
             return inputList;
         }
@@ -22,7 +27,7 @@ public class StrandSorter implements Sorter {
         }
 
         List<Integer> sortedSublist = new ArrayList<>(sublist);
-        List<Integer> remainingList = sort(inputList);
+        List<Integer> remainingList = innerSort(inputList);
 
         return mergeLists(sortedSublist, remainingList);
     }
@@ -56,7 +61,6 @@ public class StrandSorter implements Sorter {
         inputList.add(56);
         inputList.add(98);
 
-        System.out.println("Original List: " + inputList);
         List<Integer> sortedList = sorter.sort(inputList);
         System.out.println("Original List: " + inputList);
         System.out.println("Sorted List: " + sortedList);
