@@ -66,10 +66,10 @@ public class CompareMe implements Comparable<CompareMe>{
 
     @Override
     public String toString() {
-        return "DataObject{" +
-                "stringValue='" + name + '\'' +
-                ", intValue=" + score +
-                ", booleanValue=" + boss +
+        return "CompareMe{" +
+                "name='" + name + '\'' +
+                ", score=" + score +
+                ", boss=" + boss +
                 '}';
     }
 }
