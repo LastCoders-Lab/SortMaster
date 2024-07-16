@@ -49,7 +49,7 @@ public class StrandSorter<T extends Comparable<T>> implements Sorter<T> {
     @SuppressWarnings("unchecked")
     private T[] addElement(T[] array, T element) {
         swapCount++;
-//        T[] newArray = new T[array.length - 1];
+//        T[] newArray = new T[array.length + 1];
         T[] newArray = (T[]) new Object[array.length + 1];
         System.arraycopy(array, 0, newArray, 0, array.length);
         newArray[array.length] = element;
@@ -59,7 +59,7 @@ public class StrandSorter<T extends Comparable<T>> implements Sorter<T> {
     @SuppressWarnings("unchecked")
     private T[] removeElement(T[] array, int index) {
 //        T[] newArray = new T[array.length - 1];
-        T[] newArray = (T[]) new Object[array.length + 1];
+        T[] newArray = (T[]) new Object[array.length - 1];
         System.arraycopy(array, 0, newArray, 0, index);
         System.arraycopy(array, index + 1, newArray, index, array.length - index - 1);
         return newArray;
