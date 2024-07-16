@@ -1,9 +1,6 @@
 package xyz.lastcoderslab.sortmaster;
 
-import xyz.lastcoderslab.sortmaster.command.ExitCommand;
-import xyz.lastcoderslab.sortmaster.command.GenerateCommand;
-import xyz.lastcoderslab.sortmaster.command.ICommand;
-import xyz.lastcoderslab.sortmaster.command.SortCommand;
+import xyz.lastcoderslab.sortmaster.command.*;
 import xyz.lastcoderslab.sortmaster.manager.DataManager;
 import xyz.lastcoderslab.sortmaster.manager.SortManager;
 import xyz.lastcoderslab.sortmaster.tools.Message;
@@ -24,10 +21,10 @@ public class Application {
     public void run(){
         dataManager = new DataManager();
         sortManager = new SortManager(dataManager);
-        dataManager.createObjectsArray(10);
+        dataManager.createIntArray(10);
         commands.put("/generate", new GenerateCommand(dataManager));
         commands.put("/sort", new SortCommand(sortManager));
-        commands.put("/result", new SortCommand(sortManager));
+        commands.put("/result", new ResultCommand(sortManager));
         commands.put("/exit", new ExitCommand());
 
         dialog();

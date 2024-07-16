@@ -26,7 +26,7 @@ public class GenerateCommand implements ICommand{
     @Override
     public void execute(String[] args) {
         dataManager.createIntArray(10);
-        Message.send(Message.get("Ваш массив: " + Arrays.toString(dataManager.getDataArray())));
+        Message.send(Message.get("Ваш массив: " + Arrays.toString(dataManager.getData())));
         Message.send(Message.get("Используйте его для последующих сортировок"));
     }
 

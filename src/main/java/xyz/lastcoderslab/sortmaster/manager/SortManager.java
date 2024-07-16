@@ -1,6 +1,6 @@
 package xyz.lastcoderslab.sortmaster.manager;
 
-import xyz.lastcoderslab.sortmaster.entity.DataObject;
+import xyz.lastcoderslab.sortmaster.entity.CompareMe;
 import xyz.lastcoderslab.sortmaster.manager.sorter.BinarySorter;
 import xyz.lastcoderslab.sortmaster.manager.sorter.Sorter;
 import xyz.lastcoderslab.sortmaster.manager.sorter.StrandSorter;
@@ -27,10 +27,10 @@ public class SortManager {
         Sorter sorter = sorts.get(type);
         //sorter.sort(dataManager.getData());
         int[]  ints = new int[10];
-        Object[] objects = new DataObject[10];
+        Object[] objects = new CompareMe[10];
 
 
-        Comparable[] comparables = new DataObject[10];
+        Comparable[] comparables = new CompareMe[10];
 
         result.add(sorter);
     }
