@@ -14,13 +14,16 @@ public class Message {
         return text;
     }
 
-
     public static String get (String text) {
         return get(text, MessageType.OTHER);
     }
 
-    public static void send(String message) {
-        System.out.println(message);
+    public static void send(String text, MessageType type) {
+        System.out.println(get(text, type));
+    }
+
+    public static void send(String text) {
+        System.out.println(get(text));
     }
 
     public static String formatHelp() {

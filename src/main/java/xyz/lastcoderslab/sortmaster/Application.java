@@ -39,7 +39,7 @@ public class Application {
             String[] args;
             args = commandLine.split(" ");
             if (!args[0].startsWith("/")) {
-                Message.send(Message.get("Неверный формат команды", MessageType.ERROR));
+                Message.send("Неверный формат команды", MessageType.ERROR);
             }
             else {
                 cmd = args[0];
@@ -52,7 +52,7 @@ public class Application {
                     commands.get(cmd).execute(args);
                 }
                 else {
-                    Message.send(Message.get("Неизвесная команда", MessageType.ERROR));
+                    Message.send("Неизвесная команда", MessageType.ERROR);
                 }
             }
         }

@@ -32,11 +32,11 @@ public class SortCommand implements ICommand{
     @Override
     public void execute(String[] args) {
         if(args.length < 1) {
-            Message.send(Message.get("Не хватает аргументов", MessageType.ERROR));
+            Message.send("Не хватает аргументов", MessageType.ERROR);
             return;
         }
         if(!sorts.containsKey(args[0])) {
-            Message.send(Message.get("Неверный аргумент", MessageType.ERROR));
+            Message.send("Неверный аргумент", MessageType.ERROR);
             return;
         }
         sortManager.doSort(args[0]);
