@@ -44,7 +44,8 @@ public class SortCommand implements ICommand{
 
     @Override
     public String help() {
-        String help = TextColor.BOLD + getName() + TextColor.RESET + " - " + getDescription() + "\n";
+        String help = TextColor.BOLD + "" + TextColor.YEllOW + getName() + TextColor.RESET +
+                TextColor.YEllOW + " [ВидСортировки]" + TextColor.RESET +" - " + getDescription() + "\n";
         for(String type : sorts.keySet()) {
             help += "   " + TextColor.YEllOW + type + TextColor.RESET + "\n";
         }

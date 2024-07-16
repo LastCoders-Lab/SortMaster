@@ -28,7 +28,7 @@ public class ResultCommand implements ICommand{
 
     @Override
     public String help() {
-        String help = TextColor.BOLD + getName() + TextColor.RESET + " - " + getDescription() + "\n";
+        String help = TextColor.BOLD + "" + TextColor.YEllOW + getName() + TextColor.RESET + " - " + getDescription() + "\n";
         return help;
     }
 }
