@@ -29,9 +29,7 @@ public class DataManager {
                     .boss(Math.random() < 0.2 ? true : false)
                     .build();
         }
-        for(Comparable obj : dataObjects) {
-            System.out.println(obj);
-        }
+
         setData(dataObjects);
         return dataObjects;
      }
@@ -50,5 +48,20 @@ public class DataManager {
 
     public void setData(Comparable[] data) {
         this.data = data;
+    }
+
+    public String dataToString() {
+        String string = "";
+
+        for(Comparable obj : data) {
+            string += obj;
+            if(obj instanceof Integer) {
+                string += " ";
+            }
+            else {
+                string += "\n";
+            }
+        }
+        return string;
     }
 }
