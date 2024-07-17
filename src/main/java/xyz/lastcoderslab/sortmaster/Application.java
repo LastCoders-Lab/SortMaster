@@ -5,6 +5,7 @@ import xyz.lastcoderslab.sortmaster.manager.DataManager;
 import xyz.lastcoderslab.sortmaster.manager.SortManager;
 import xyz.lastcoderslab.sortmaster.tools.Message;
 import xyz.lastcoderslab.sortmaster.tools.MessageType;
+import xyz.lastcoderslab.sortmaster.tools.TextColor;
 
 import java.util.Arrays;
 import java.util.LinkedHashMap;
@@ -25,6 +26,12 @@ public class Application {
         commands.put("/sort", new SortCommand(sortManager));
         commands.put("/result", new ResultCommand(sortManager));
         commands.put("/exit", new ExitCommand());
+
+
+        System.out.println(TextColor.ORANGE + "|~~~~~~~~~~~~~~~~~~~~~|");
+        System.out.println(TextColor.ORANGE + "| S o r t M a s t e r |");
+        System.out.println(TextColor.ORANGE + "|~~~~~~~~~~~~~~~~~~~~~|");
+        System.out.println(TextColor.GREY + "coded by LastCoders-Lab\n");
 
         dialog();
     }
@@ -67,5 +74,6 @@ public class Application {
         }
         return s;
     }
+
 
 }

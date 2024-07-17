@@ -3,6 +3,7 @@ package xyz.lastcoderslab.sortmaster.manager;
 import net.datafaker.Faker;
 import xyz.lastcoderslab.sortmaster.entity.CompareMe;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class DataManager {
@@ -29,7 +30,6 @@ public class DataManager {
                     .boss(Math.random() < 0.2 ? true : false)
                     .build();
         }
-
         setData(dataObjects);
         return dataObjects;
      }
@@ -50,18 +50,28 @@ public class DataManager {
         this.data = data;
     }
 
-    public String dataToString() {
-        String string = "";
+    public String dataToPrint(Comparable[] data) {
 
-        for(Comparable obj : data) {
-            string += obj;
-            if(obj instanceof Integer) {
-                string += " ";
-            }
-            else {
-                string += "\n";
-            }
+        if(data[0] instanceof Integer) {
+            return Arrays.toString(getData());
         }
-        return string;
+
+        String string = "";
+        int last = data.length - 3;
+        if(data.length > 10) {
+            last = 5;
+        }
+        for(int i=0; i < last; i++) {
+            string += "[" + i + "] " + data[i] + "\n";
+        }
+        if(data.length > 10) string += "...\n";
+        for(int i= data.length-3; i < data.length; i++) {
+            string += "[" + i + "] " + data[i] + "\n";
+        }
+       return string;
+    }
+
+    public String dataToPrint() {
+        return dataToPrint(data);
     }
 }

@@ -5,10 +5,6 @@ import xyz.lastcoderslab.sortmaster.tools.Message;
 import xyz.lastcoderslab.sortmaster.tools.MessageType;
 import xyz.lastcoderslab.sortmaster.tools.TextColor;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 public class GenerateCommand implements ICommand{
     private final DataManager dataManager;
 
@@ -40,7 +36,7 @@ public class GenerateCommand implements ICommand{
                 if(args[0].equals("o")) {
                     dataManager.createObjectsArray(Integer.parseInt(args[1]));
                 }
-                Message.send("Ваш массив:\n" + dataManager.dataToString());
+                Message.send("Ваш массив:\n" + dataManager.dataToPrint());
                 Message.send("Используйте его для последующих сортировок");
                 return;
             }
