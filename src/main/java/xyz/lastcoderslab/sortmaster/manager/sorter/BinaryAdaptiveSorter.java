@@ -29,6 +29,7 @@ public class BinaryAdaptiveSorter implements AdaptiveSorter {
     public void sort(Integer[] inputArray, int mode) {
         this.inputArray = inputArray;
         swapCount = 0;
+        startTime = System.nanoTime();
         int[] sortedArrayPrimitive;
         switch (mode) {
             case 0:
@@ -43,7 +44,6 @@ public class BinaryAdaptiveSorter implements AdaptiveSorter {
             default:
                 break;
         }
-
         endTime = System.nanoTime();
     }
 
