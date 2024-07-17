@@ -58,7 +58,6 @@ public class StrandSorter<T extends Comparable<? super T>> implements Sorter<T> 
 
     @SuppressWarnings("unchecked")
     private T[] addElement(T[] array, T element) {
-        swapCount++;
         T[] newArray = (T[]) java.lang.reflect.Array.newInstance(array.getClass().getComponentType(), array.length + 1);
         System.arraycopy(array, 0, newArray, 0, array.length);
         newArray[array.length] = element;
@@ -67,6 +66,7 @@ public class StrandSorter<T extends Comparable<? super T>> implements Sorter<T> 
 
     @SuppressWarnings("unchecked")
     private T[] removeElement(T[] array, int index) {
+        swapCount++;
         T[] newArray = (T[]) Array.newInstance(array.getClass().getComponentType(), array.length - 1);
         System.arraycopy(array, 0, newArray, 0, index);
         System.arraycopy(array, index + 1, newArray, index, array.length - index - 1);
