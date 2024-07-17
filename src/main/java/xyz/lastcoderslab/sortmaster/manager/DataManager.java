@@ -74,4 +74,20 @@ public class DataManager {
     public String dataToPrint() {
         return dataToPrint(data);
     }
+
+    public String dataToPrintFull(Comparable[] data) {
+        if(data[0] instanceof Integer) {
+            return Arrays.toString(getData());
+        }
+
+        String string = "";
+        for(int i=0; i < data.length; i++) {
+            string += "[" + i + "] " + data[i] + "\n";
+        }
+        return string;
+    }
+
+    public String dataToPrintFull() {
+        return dataToPrintFull(data);
+    }
 }
