@@ -1,11 +1,13 @@
 package xyz.lastcoderslab.sortmaster.manager.sorter;
 
-import java.util.Arrays;
+import java.lang.reflect.Array;
 
-public class StrandSorter<T extends Comparable<T>> implements Sorter<T> {
+public class StrandSorter<T extends Comparable<? super T>> implements Sorter<T> {
     private long startTime;
     private long endTime;
     private long swapCount;
+    private T[] inputArray;
+    private T[] sortedArray;
 
     public long getSortingTime() {
         return endTime - startTime;
@@ -15,13 +17,21 @@ public class StrandSorter<T extends Comparable<T>> implements Sorter<T> {
         return swapCount;
     }
 
+    public T[] getInputArray() {
+        return inputArray;
+    }
+
+    public T[] getOutputArray() {
+        return sortedArray;
+    }
+
     @Override
-    public T[] sort(T[] inputArray) {
+    public void sort(T[] inputArray) {
+        this.inputArray = inputArray;
         swapCount = 0;
         startTime = System.nanoTime();
-        T[] sortedArray = innerSort(inputArray.clone());
+        sortedArray = innerSort(inputArray.clone());
         endTime = System.nanoTime();
-        return sortedArray;
     }
 
     @SuppressWarnings("unchecked")
@@ -30,12 +40,12 @@ public class StrandSorter<T extends Comparable<T>> implements Sorter<T> {
             return array;
         }
 
-        T[] subarray = (T[]) new Object[0];
+        T[] subarray = (T[]) Array.newInstance(array.getClass().getComponentType(), 0);
         subarray = addElement(subarray, array[0]);
         array = removeElement(array, 0);
         int i = 0;
         while (i < array.length) {
-            if (array[i].compareTo(subarray[subarray.length - 1]) > 0) {
+            if (array[i].compareTo(subarray[subarray.length - 1]) >= 0) {
                 subarray = addElement(subarray, array[i]);
                 array = removeElement(array, i);
             } else {
@@ -49,8 +59,7 @@ public class StrandSorter<T extends Comparable<T>> implements Sorter<T> {
     @SuppressWarnings("unchecked")
     private T[] addElement(T[] array, T element) {
         swapCount++;
-//        T[] newArray = new T[array.length + 1];
-        T[] newArray = (T[]) new Object[array.length + 1];
+        T[] newArray = (T[]) java.lang.reflect.Array.newInstance(array.getClass().getComponentType(), array.length + 1);
         System.arraycopy(array, 0, newArray, 0, array.length);
         newArray[array.length] = element;
         return newArray;
@@ -58,8 +67,7 @@ public class StrandSorter<T extends Comparable<T>> implements Sorter<T> {
 
     @SuppressWarnings("unchecked")
     private T[] removeElement(T[] array, int index) {
-//        T[] newArray = new T[array.length - 1];
-        T[] newArray = (T[]) new Object[array.length - 1];
+        T[] newArray = (T[]) Array.newInstance(array.getClass().getComponentType(), array.length - 1);
         System.arraycopy(array, 0, newArray, 0, index);
         System.arraycopy(array, index + 1, newArray, index, array.length - index - 1);
         return newArray;
@@ -67,8 +75,7 @@ public class StrandSorter<T extends Comparable<T>> implements Sorter<T> {
 
     @SuppressWarnings("unchecked")
     private T[] mergeArrays(T[] array1, T[] array2) {
-//        T[] result = new T[array1.length + array2.length];
-        T[] result = (T[]) new Object[array1.length + array2.length];
+        T[] result = (T[]) Array.newInstance(array1.getClass().getComponentType(), array1.length + array2.length);
         int i = 0, j = 0, k = 0;
         while (i < array1.length && j < array2.length) {
             if (array1[i].compareTo(array2[i]) <= 0) {
@@ -86,18 +93,4 @@ public class StrandSorter<T extends Comparable<T>> implements Sorter<T> {
         return result;
     }
 
-    public static void main(String[] args) {
-        BinarySorter<Integer> sorter = new BinarySorter<>();
-
-//        int[] inputArray = {37, 23, 0, 0, 0, 54, 31, 46, 54, 88, 54};
-//        int[] inputArray = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
-        Integer[] inputArray = {11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
-
-        Integer[] sortedArray = sorter.sort(inputArray);
-
-        System.out.println("Original Array: " + Arrays.toString(inputArray));
-        System.out.println("Sorted Array: " + Arrays.toString(sortedArray));
-        System.out.println("Swap Count: " + sorter.getSwapCount());
-        System.out.println("Sorting Time (nanoseconds): " + sorter.getSortingTime());
-    }
 }

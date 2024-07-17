@@ -1,11 +1,12 @@
 package xyz.lastcoderslab.sortmaster.manager.sorter;
 
-import java.util.Arrays;
+public class BinarySorter<T extends Comparable<? super T>> implements Sorter<T> {
 
-public class BinarySorter<T extends Comparable<T>> implements Sorter<T> {
     private long startTime;
     private long endTime;
     private long swapCount;
+    private T[] inputArray;
+    private T[] sortedArray;
 
 
     public long getSortingTime() {
@@ -16,13 +17,21 @@ public class BinarySorter<T extends Comparable<T>> implements Sorter<T> {
         return swapCount;
     }
 
+    public T[] getInputArray() {
+        return inputArray;
+    }
+
+    public T[] getOutputArray() {
+        return sortedArray;
+    }
+
     @Override
-    public T[] sort(T[] inputArray) {
+    public void sort(T[] inputArray) {
+        this.inputArray = inputArray;
         swapCount = 0;
         startTime = System.nanoTime();
-        T[] sortedArray = innerSort(inputArray.clone());
+        sortedArray = innerSort(inputArray.clone());
         endTime = System.nanoTime();
-        return sortedArray;
     }
 
     private T[] innerSort(T[] array) {
@@ -46,7 +55,7 @@ public class BinarySorter<T extends Comparable<T>> implements Sorter<T> {
         return array;
     }
 
-    private <T extends Comparable<T>> int binarySearch(T[] array, T item, int left, int right) {
+    private int binarySearch(T[] array, T item, int left, int right) {
         while (left <= right) {
             int mid = left + (right - left) / 2;
             if (item.compareTo(array[mid]) == 0)
@@ -60,19 +69,4 @@ public class BinarySorter<T extends Comparable<T>> implements Sorter<T> {
         return left;
     }
 
-    public static void main(String[] args) {
-        BinarySorter<Integer> sorter = new BinarySorter<>();
-
-//        int[] inputArray = {37, 23, 0, 0, 0, 54, 31, 46, 54, 88, 54};
-//        int[] inputArray = {2, 1, 3, 4, 5, 6, 7, 8, 9, 10, 11};
-        Integer[] inputArray = {4, 3, 2, 1, 0, -1};
-//        int[] inputArray = {11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
-
-        Integer[] sortedArray = sorter.sort(inputArray);
-
-        System.out.println("Original Array: " + Arrays.toString(inputArray));
-        System.out.println("Sorted Array: " + Arrays.toString(sortedArray));
-        System.out.println("Swap Count: " + sorter.getSwapCount());
-        System.out.println("Sorting Time (nanoseconds): " + sorter.getSortingTime());
-    }
 }
