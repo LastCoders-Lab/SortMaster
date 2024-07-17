@@ -1,10 +1,13 @@
 package xyz.lastcoderslab.sortmaster.manager.sorter;
 
-import java.util.ArrayList;
-import java.util.List;
+public interface Sorter<T extends Comparable<? super T>> {
+    long getSortingTime();
 
-public interface Sorter {
-//    List<Integer> sort(List<Integer> inputList);
+    long getSwapCount();
 
-    int[] sort(int[] inputArray);
+    T[] getInputArray();
+
+    T[] getOutputArray();
+
+    void sort(T[] inputArray);
 }
