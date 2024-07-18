@@ -43,14 +43,13 @@ public class GenerateCommand implements ICommand{
             Message.send("Значение второго аргумента должно быть целым положительным числом", MessageType.ERROR);
         }
         Message.send("Неверный аргумент", MessageType.ERROR);
-
     }
 
     @Override
     public String help() {
         String help = TextColor.BOLD + "" + TextColor.YEllOW + getName() + TextColor.RESET +
         TextColor.YEllOW + " [тип]" +
-                TextColor.BLUE + " [размерность]" + TextColor.RESET +" - " + getDescription() + "\n";
+                TextColor.BLUE + " [размерность]" + TextColor.RESET  +" - " + getDescription() + "\n";
         help += "   " + TextColor.YEllOW + "i"  + TextColor.BLUE + " [n]" + TextColor.RESET + " - массив целых чисел\n";
         help += "   " + TextColor.YEllOW + "o"  + TextColor.BLUE + " [n]" + TextColor.RESET + " - массив объектов\n";
         return help;
