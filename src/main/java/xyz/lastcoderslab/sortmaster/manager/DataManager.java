@@ -15,11 +15,20 @@ public class DataManager {
 
     public static final String FILE_DIR = "files";
 
-    public DataManager() {
+    private static DataManager instance = null;
+
+    private DataManager() {
         File directory = new File(FILE_DIR);
         if (! directory.exists()){
             directory.mkdirs();
         }
+    }
+
+    public static DataManager getInstance() {
+        if(instance == null) {
+            instance = new DataManager();
+        }
+        return instance;
     }
 
     public Comparable[] createIntArray(int size) {

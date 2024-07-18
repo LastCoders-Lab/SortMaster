@@ -17,11 +17,20 @@ public class SortManager {
 
     private List<Sorter> result = new ArrayList<>();
 
-    public SortManager(DataManager dataManager) {
+    private static SortManager instance = null;
+
+    private SortManager(DataManager dataManager) {
         this.dataManager = dataManager;
 
         sorts.put("BinarySort", new BinarySorter<>());
         sorts.put("StrandSort", new StrandSorter<>());
+    }
+
+    public static SortManager getInstance(DataManager dataManager) {
+        if(instance == null) {
+            instance = new SortManager(dataManager);
+        }
+        return instance;
     }
 
     public Sorter doSort(String type, int flag) {

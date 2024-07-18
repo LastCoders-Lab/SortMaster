@@ -20,8 +20,8 @@ public class Application {
     Map<String, ICommand> commands = new LinkedHashMap<>();
 
     public void run(){
-        dataManager = new DataManager();
-        sortManager = new SortManager(dataManager);
+        dataManager = DataManager.getInstance();
+        sortManager = SortManager.getInstance(dataManager);
         commands.put("/generate", new GenerateCommand(dataManager));
         commands.put("/load", new LoadCommand(dataManager));
         commands.put("/save", new SaveCommand(dataManager));

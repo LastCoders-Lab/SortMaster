@@ -12,8 +12,8 @@ class ApplicationTest {
 
     @Test
     void mainTest() {
-        DataManager dataManager = new DataManager();
-        SortManager sortManager = new SortManager(dataManager);
+        DataManager dataManager = DataManager.getInstance();
+        SortManager sortManager = SortManager.getInstance(dataManager);
 
         Sorter sorter;
 
