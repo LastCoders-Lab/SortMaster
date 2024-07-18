@@ -47,7 +47,7 @@ public class Application {
             args = commandLine.split(" ");
             args[0] = args[0].trim();
             if (!args[0].startsWith("/")) {
-                Message.send("Неверный формат командыDDD", MessageType.ERROR);
+                Message.send("Неверный формат команды", MessageType.ERROR);
             }
             else {
                 cmd = args[0];

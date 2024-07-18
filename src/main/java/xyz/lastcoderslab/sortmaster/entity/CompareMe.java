@@ -19,8 +19,8 @@ public class CompareMe implements Comparable<CompareMe>{
         if(this.boss == o.isBoss()) {
             return this.score - o.getScore();
         }
-        else if (this.boss) return 1;
-        else return -1;
+        else if (this.boss) return -1;
+        else return 1;
     }
 
     public String getName() {

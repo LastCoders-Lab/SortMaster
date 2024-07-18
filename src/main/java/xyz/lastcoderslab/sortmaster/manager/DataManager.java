@@ -50,10 +50,10 @@ public class DataManager {
         this.data = data;
     }
 
-    public String dataToPrint(Comparable[] data) {
+    public static String dataToPrint(Comparable[] data) {
 
         if(data[0] instanceof Integer) {
-            return Arrays.toString(getData());
+            return Arrays.toString(data);
         }
 
         String string = "";
@@ -75,9 +75,9 @@ public class DataManager {
         return dataToPrint(data);
     }
 
-    public String dataToPrintFull(Comparable[] data) {
+    public static String dataToPrintFull(Comparable[] data) {
         if(data[0] instanceof Integer) {
-            return Arrays.toString(getData());
+            return Arrays.toString(data);
         }
 
         String string = "";
@@ -87,7 +87,7 @@ public class DataManager {
         return string;
     }
 
-    public String dataToPrintFull() {
-        return dataToPrintFull(data);
+    public static String dataToPrintFull() {
+        return dataToPrintFull();
     }
 }
