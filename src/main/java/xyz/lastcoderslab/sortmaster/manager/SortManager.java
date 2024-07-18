@@ -24,7 +24,7 @@ public class SortManager {
         sorts.put("StrandSort", new StrandSorter<>());
     }
 
-    public Sorter doSort(String type, int flag) {
+    public Sorter doSort(String type) {
         if(!sorts.containsKey(type)) {
             throw new IllegalArgumentException("Invalid argument");
         }
