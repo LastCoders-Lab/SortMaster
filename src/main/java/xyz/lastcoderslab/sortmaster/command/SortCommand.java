@@ -1,5 +1,6 @@
 package xyz.lastcoderslab.sortmaster.command;
 
+import xyz.lastcoderslab.sortmaster.manager.DataManager;
 import xyz.lastcoderslab.sortmaster.manager.SortManager;
 import xyz.lastcoderslab.sortmaster.manager.sorter.Sorter;
 import xyz.lastcoderslab.sortmaster.tools.Message;
@@ -39,7 +40,15 @@ public class SortCommand implements ICommand{
             Message.send("Неверный аргумент", MessageType.ERROR);
             return;
         }
-        sortManager.doSort(args[0]);
+        Sorter sorter = sortManager.doSort(args[0]);
+        Message.send("Результаты сортировки " + args[0] + ":", MessageType.MAIN);
+        System.out.println("Исходный массив:");
+        System.out.println(DataManager.dataToPrint(sorter.getInputArray()));
+        System.out.println("Результат:");
+        System.out.println(DataManager.dataToPrint(sorter.getOutputArray()));
+        System.out.println("Количество перестановок: " + sorter.getSwapCount());
+        System.out.println("Затрачено времени(в наносекундах): " + sorter.getSortingTime());
+        System.out.println("\n");
     }
 
     @Override
