@@ -1,13 +1,15 @@
 package xyz.lastcoderslab.sortmaster.manager.sorter;
 
 public interface Sorter<T extends Comparable<? super T>> {
-    public long getSortingTime();
+    String getName();
 
-    public long getSwapCount();
+    long getSortingTime();
 
-    public T[] getInputArray();
+    long getSwapCount();
 
-    public T[] getOutputArray();
+    T[] getInputArray();
+
+    T[] getOutputArray();
 
     void sort(T[] inputArray, int mode);
 }
