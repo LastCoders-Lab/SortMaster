@@ -62,12 +62,13 @@ public class SortCommand implements ICommand{
     @Override
     public String help() {
         String help = TextColor.BOLD + "" + TextColor.YEllOW + getName() + TextColor.RESET +
-                TextColor.YEllOW + " [ВидСортировки]" + TextColor.BLUE + " <1|2> " + TextColor.RESET +" - " + getDescription() + "\n";
+                TextColor.YEllOW + " [ВидСортировки]" + TextColor.BLUE + " <empty|1|2> " + TextColor.RESET +" - " + getDescription() + "\n";
         for(String type : sorts.keySet()) {
             help += "   " + TextColor.YEllOW + type + TextColor.RESET + "\n";
         }
-        help += TextColor.BLUE + "   1 " + TextColor.RESET + "- сортировать только четные числа\n";
-        help += TextColor.BLUE + "   2 " + TextColor.RESET + "- сортировать только нечетные числа\n";
+        help += "   Для массива целых чисел: \n";
+        help += TextColor.BLUE + "      1 " + TextColor.RESET + "- сортировать только четные числа\n";
+        help += TextColor.BLUE + "      2 " + TextColor.RESET + "- сортировать только нечетные числа\n";
         return help;
     }
 }
