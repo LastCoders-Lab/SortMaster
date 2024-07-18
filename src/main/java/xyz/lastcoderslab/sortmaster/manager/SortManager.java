@@ -24,12 +24,12 @@ public class SortManager {
         sorts.put("StrandSort", new StrandSorter<>());
     }
 
-    public Sorter doSort(String type) {
+    public Sorter doSort(String type, int flag) {
         if(!sorts.containsKey(type)) {
             throw new IllegalArgumentException("Invalid argument");
         }
         Sorter sorter = sorts.get(type);
-        sorter.sort(dataManager.getData());
+        sorter.sort(dataManager.getData(), flag);
         result.add(sorter);
         return sorter;
     }

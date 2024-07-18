@@ -41,12 +41,12 @@ public class SortCommand implements ICommand{
             return;
         }
         int flag = 0;
-        if(args.length == 3) {
-            if(!args[2].matches("[0-2]+")) {
+        if(args.length == 2) {
+            if(!args[1].matches("[0-2]+")) {
                 Message.send("Аргумент два должен быть одним из чисел 0, 1, 2", MessageType.ERROR);
                 return;
             }
-            flag = Integer.parseInt(args[2]);
+            flag = Integer.parseInt(args[1]);
         }
         Sorter sorter = sortManager.doSort(args[0], flag);
         Message.send("Результаты сортировки " + args[0] + ":", MessageType.MAIN);

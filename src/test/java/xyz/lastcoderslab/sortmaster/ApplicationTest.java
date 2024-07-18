@@ -26,7 +26,7 @@ class ApplicationTest {
         dataManager.createObjectsArray(10);
         System.out.println(dataManager.dataToPrint());
 
-        sorter = sortManager.doSort("StrandSort");
+        sorter = sortManager.doSort("StrandSort", 0);
         System.out.println(DataManager.dataToPrint(sorter.getOutputArray()));
 
     }
