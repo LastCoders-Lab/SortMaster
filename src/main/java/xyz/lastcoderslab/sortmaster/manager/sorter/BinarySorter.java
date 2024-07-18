@@ -10,7 +10,9 @@ public class BinarySorter<T extends Comparable<? super T>> implements Sorter<T> 
     private T[] inputArray;
     private T[] sortedArray;
 
-
+    public String getName(){
+        return "Binary Sort";
+    }
     public long getSortingTime() {
         return endTime - startTime;
     }
