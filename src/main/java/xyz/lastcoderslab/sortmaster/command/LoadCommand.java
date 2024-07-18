@@ -37,7 +37,7 @@ public class LoadCommand implements ICommand{
             if(args[0].equals("o")) {
                 dataManager.readDataFromFile(args[1], CompareMe.class);
             }
-            Message.send("Загружен массив:\n" + dataManager.dataToPrint());
+            Message.send("Загружен массив:\n" + dataManager.dataToPrint(), MessageType.MAIN);
             Message.send("Используйте его для последующих сортировок");
             return;
         }
@@ -46,7 +46,7 @@ public class LoadCommand implements ICommand{
 
     @Override
     public String help() {
-        String help = TextColor.BOLD + "" + TextColor.YEllOW + getName() +
+        String help = TextColor.BOLD + "" + TextColor.YEllOW + getName() + TextColor.RESET +
                 TextColor.YEllOW + " [тип]" +
                 TextColor.BLUE + " [path/to/file]"  + TextColor.RESET  +" - " + getDescription() + "\n";
         help += "   " + TextColor.YEllOW + "i"  + TextColor.BLUE + " [n]" + TextColor.RESET + " - массив целых чисел\n";

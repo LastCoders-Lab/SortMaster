@@ -24,6 +24,7 @@ public class Application {
         sortManager = new SortManager(dataManager);
         commands.put("/generate", new GenerateCommand(dataManager));
         commands.put("/load", new LoadCommand(dataManager));
+        commands.put("/save", new SaveCommand(dataManager));
         commands.put("/sort", new SortCommand(sortManager));
         commands.put("/result", new ResultCommand(sortManager));
         commands.put("/exit", new ExitCommand());

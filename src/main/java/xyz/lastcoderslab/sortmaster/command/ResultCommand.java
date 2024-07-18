@@ -1,6 +1,8 @@
 package xyz.lastcoderslab.sortmaster.command;
 
 import xyz.lastcoderslab.sortmaster.manager.SortManager;
+import xyz.lastcoderslab.sortmaster.tools.Message;
+import xyz.lastcoderslab.sortmaster.tools.MessageType;
 import xyz.lastcoderslab.sortmaster.tools.TextColor;
 
 public class ResultCommand implements ICommand{
@@ -23,7 +25,7 @@ public class ResultCommand implements ICommand{
 
     @Override
     public void execute(String[] args) {
-
+        Message.send("Тут должна была быть статистика", MessageType.MAIN);
     }
 
     @Override

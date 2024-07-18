@@ -1,0 +1,52 @@
+[
+  {
+    "name": "Sanford Leuschke",
+    "score": 872,
+    "boss": false
+  },
+  {
+    "name": "Mrs. Warren Block",
+    "score": 679,
+    "boss": false
+  },
+  {
+    "name": "Octavia Rogahn",
+    "score": 650,
+    "boss": false
+  },
+  {
+    "name": "Ivy Pouros",
+    "score": 861,
+    "boss": false
+  },
+  {
+    "name": "Dante Kutch",
+    "score": 189,
+    "boss": true
+  },
+  {
+    "name": "Jewell Vandervort PhD",
+    "score": 83,
+    "boss": false
+  },
+  {
+    "name": "Mrs. Antone Fritsch",
+    "score": 522,
+    "boss": true
+  },
+  {
+    "name": "Ms. Lisbeth Hermiston",
+    "score": 582,
+    "boss": true
+  },
+  {
+    "name": "Francisco Yost",
+    "score": 180,
+    "boss": false
+  },
+  {
+    "name": "Reuben Collier",
+    "score": 205,
+    "boss": false
+  }
+]

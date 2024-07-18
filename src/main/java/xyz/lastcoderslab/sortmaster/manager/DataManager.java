@@ -13,6 +13,15 @@ public class DataManager {
     private int maxNumber = 1000;
     private Comparable[] data;
 
+    public static final String FILE_DIR = "files";
+
+    public DataManager() {
+        File directory = new File(FILE_DIR);
+        if (! directory.exists()){
+            directory.mkdirs();
+        }
+    }
+
     public Comparable[] createIntArray(int size) {
         Comparable[] dataArray = new Integer[size];
         Random rand = new Random();

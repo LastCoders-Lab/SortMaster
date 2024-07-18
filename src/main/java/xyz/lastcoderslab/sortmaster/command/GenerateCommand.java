@@ -36,7 +36,7 @@ public class GenerateCommand implements ICommand{
                 if(args[0].equals("o")) {
                     dataManager.createObjectsArray(Integer.parseInt(args[1]));
                 }
-                Message.send("Ваш массив:\n" + dataManager.dataToPrint());
+                Message.send("Ваш массив:\n" + dataManager.dataToPrint(), MessageType.MAIN);
                 Message.send("Используйте его для последующих сортировок");
                 return;
             }

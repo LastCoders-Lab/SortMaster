@@ -9,7 +9,7 @@ public class Message {
             case NOTICE:
                 return TextColor.GREEN + text + TextColor.RESET;
             case ERROR:
-                return TextColor.RED + "Ошибка: " + text + TextColor.RESET;
+                return TextColor.RED + "ERROR: " + text + TextColor.RESET;
         }
         return text;
     }
