@@ -9,5 +9,5 @@ public interface Sorter<T extends Comparable<? super T>> {
 
     T[] getOutputArray();
 
-    void sort(T[] inputArray);
+    void sort(T[] inputArray, int mode);
 }
