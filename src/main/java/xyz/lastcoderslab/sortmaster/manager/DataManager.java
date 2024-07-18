@@ -2,10 +2,12 @@ package xyz.lastcoderslab.sortmaster.manager;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 import net.datafaker.Faker;
 import xyz.lastcoderslab.sortmaster.entity.CompareMe;
 
 import java.io.*;
+import java.lang.reflect.Type;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -16,7 +18,7 @@ public class DataManager {
     public Comparable[] createIntArray(int size) {
         Comparable[] dataArray = new Integer[size];
         Random rand = new Random();
-        for (int i = 0; i < size; i++){
+        for (int i = 0; i < size; i++) {
             dataArray[i] = rand.nextInt(maxNumber);
         }
         setData(dataArray);
@@ -26,7 +28,7 @@ public class DataManager {
     public Comparable[] createObjectsArray(int size) {
         Faker faker = new Faker();
         Comparable[] dataObjects = new CompareMe[size];
-        for(int i = 0; i < size; i++) {
+        for (int i = 0; i < size; i++) {
             dataObjects[i] = CompareMe.builder()
                     .name(faker.name().name())
                     .score(faker.number().numberBetween(0, 1000))
@@ -35,7 +37,7 @@ public class DataManager {
         }
         setData(dataObjects);
         return dataObjects;
-     }
+    }
 
     public int getMaxNumber() {
         return maxNumber;
@@ -55,23 +57,23 @@ public class DataManager {
 
     public String dataToPrint(Comparable[] data) {
 
-        if(data[0] instanceof Integer) {
+        if (data[0] instanceof Integer) {
             return Arrays.toString(getData());
         }
 
         String string = "";
         int last = data.length - 3;
-        if(data.length > 10) {
+        if (data.length > 10) {
             last = 5;
         }
-        for(int i=0; i < last; i++) {
+        for (int i = 0; i < last; i++) {
             string += "[" + i + "] " + data[i] + "\n";
         }
-        if(data.length > 10) string += "...\n";
-        for(int i= data.length-3; i < data.length; i++) {
+        if (data.length > 10) string += "...\n";
+        for (int i = data.length - 3; i < data.length; i++) {
             string += "[" + i + "] " + data[i] + "\n";
         }
-       return string;
+        return string;
     }
 
     public String dataToPrint() {
@@ -79,12 +81,12 @@ public class DataManager {
     }
 
     public String dataToPrintFull(Comparable[] data) {
-        if(data[0] instanceof Integer) {
+        if (data[0] instanceof Integer) {
             return Arrays.toString(getData());
         }
 
         String string = "";
-        for(int i=0; i < data.length; i++) {
+        for (int i = 0; i < data.length; i++) {
             string += "[" + i + "] " + data[i] + "\n";
         }
         return string;
@@ -94,45 +96,28 @@ public class DataManager {
         return dataToPrintFull(data);
     }
 
-    public void writeDataToFile(String filename, Comparable[] data) {
+    public void writeDataToFile(String filename) {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
-            if (data instanceof Integer[]) {
-                Integer[] intData = Arrays.stream(data).map(i -> (Integer) i).toArray(Integer[]::new);                writer.write(gson.toJson(intData));
-            } else {
-                writer.write(gson.toJson(data));
-            }
+            writer.write(gson.toJson(data));
         } catch (IOException e) {
-            System.out.println("Error writing to file: " + e.getMessage());
+            System.out.println("Ошибка записи в файл: " + e.getMessage());
         }
     }
 
-    public Comparable[] readDataFromFile(String filename) {
-        Comparable[] data = new Comparable[0];
+    public <T extends Comparable<T>> void readDataFromFile(String filename, Class<T> clazz) {
         Gson gson = new Gson();
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
-            String json = "";
-            String line;
-            while ((line = reader.readLine()) != null) {
-                json += line;
-            }
-            if (data instanceof Integer[]) {
-                Integer[] intData = gson.fromJson(json, Integer[].class);
-                data = intData;
+            if (clazz.equals(Integer.class)) {
+                Integer[] data = gson.fromJson(reader, Integer[].class);
+                setData(data);
             } else {
-                data = gson.fromJson(json, CompareMe[].class);
+                CompareMe[] data = gson.fromJson(reader, CompareMe[].class);
+                setData(data);
             }
         } catch (IOException e) {
-            System.out.println("Error reading from file: " + e.getMessage());
+            System.out.println("Ошибка чтения из файла: " + e.getMessage());
         }
-        return data;
     }
 
-    public static void main(String[] args) {
-        Comparable[] data = {1, 2, 3};
-        DataManager dm = new DataManager();
-        dm.writeDataToFile("D:\\studying\\programming\\javaProjects\\AstonCourse\\SortMaster\\src\\main\\file.txt", data);
-        Comparable[] data2 = dm.readDataFromFile("D:\\studying\\programming\\javaProjects\\AstonCourse\\SortMaster\\src\\main\\file.txt");
-        System.out.println(Arrays.toString(data2));
-    }
 }
