@@ -1,8 +1,11 @@
 package xyz.lastcoderslab.sortmaster.manager;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import net.datafaker.Faker;
 import xyz.lastcoderslab.sortmaster.entity.CompareMe;
 
+import java.io.*;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -87,7 +90,31 @@ public class DataManager {
         return string;
     }
 
-    public static String dataToPrintFull() {
-        return dataToPrintFull();
+    public String dataToPrintFull() {
+        return dataToPrintFull(data);
+    }
+
+    public void writeDataToFile(String filename) {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
+            writer.write(gson.toJson(data));
+        } catch (IOException e) {
+            System.out.println("Ошибка записи в файл: " + e.getMessage());
+        }
+    }
+
+    public <T extends Comparable<T>> void readDataFromFile(String filename, Class<T> clazz) {
+        Gson gson = new Gson();
+        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
+            Comparable[] data = null;
+            if (clazz.equals(Integer.class)) {
+                data = gson.fromJson(reader, Integer[].class);
+            } else if (clazz.equals(CompareMe.class)) {
+                data = gson.fromJson(reader, CompareMe[].class);
+            }
+            setData(data);
+        } catch (IOException e) {
+            System.out.println("Ошибка чтения из файла: " + e.getMessage());
+        }
     }
 }
