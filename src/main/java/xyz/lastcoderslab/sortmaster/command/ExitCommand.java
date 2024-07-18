@@ -1,8 +1,8 @@
 package xyz.lastcoderslab.sortmaster.command;
 
-import xyz.lastcoderslab.sortmaster.tools.Message;
-import xyz.lastcoderslab.sortmaster.tools.MessageType;
-import xyz.lastcoderslab.sortmaster.tools.TextColor;
+import xyz.lastcoderslab.sortmaster.util.Message;
+import xyz.lastcoderslab.sortmaster.util.MessageType;
+import xyz.lastcoderslab.sortmaster.util.TextColor;
 
 public class ExitCommand implements ICommand{
     @Override

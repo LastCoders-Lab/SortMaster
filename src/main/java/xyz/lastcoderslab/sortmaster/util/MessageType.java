@@ -1,4 +1,4 @@
-package xyz.lastcoderslab.sortmaster.tools;
+package xyz.lastcoderslab.sortmaster.util;
 
 public enum MessageType {
     MAIN,

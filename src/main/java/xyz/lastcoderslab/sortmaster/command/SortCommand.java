@@ -3,9 +3,9 @@ package xyz.lastcoderslab.sortmaster.command;
 import xyz.lastcoderslab.sortmaster.manager.DataManager;
 import xyz.lastcoderslab.sortmaster.manager.SortManager;
 import xyz.lastcoderslab.sortmaster.manager.sorter.Sorter;
-import xyz.lastcoderslab.sortmaster.tools.Message;
-import xyz.lastcoderslab.sortmaster.tools.MessageType;
-import xyz.lastcoderslab.sortmaster.tools.TextColor;
+import xyz.lastcoderslab.sortmaster.util.Message;
+import xyz.lastcoderslab.sortmaster.util.MessageType;
+import xyz.lastcoderslab.sortmaster.util.TextColor;
 
 import java.util.Map;
 
