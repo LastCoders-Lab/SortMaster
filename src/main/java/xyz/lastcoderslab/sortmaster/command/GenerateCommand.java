@@ -53,7 +53,6 @@ public class GenerateCommand implements ICommand{
                 TextColor.BLUE + " [размерность]" + TextColor.RESET +" - " + getDescription() + "\n";
         help += "   " + TextColor.YEllOW + "i"  + TextColor.BLUE + " [n]" + TextColor.RESET + " - массив целых чисел\n";
         help += "   " + TextColor.YEllOW + "o"  + TextColor.BLUE + " [n]" + TextColor.RESET + " - массив объектов\n";
-        //help += "   " + TextColor.YEllOW + "f"  + TextColor.BLUE + " [path/to/file]" + TextColor.RESET + " - загрузить из файла [имя файла]\n";
         return help;
     }
 }

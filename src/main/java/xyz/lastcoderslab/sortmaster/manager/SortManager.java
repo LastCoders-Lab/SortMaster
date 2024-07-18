@@ -34,10 +34,6 @@ public class SortManager {
         return sorter;
     }
 
-    /*public Sorter doSort(String type) {
-
-    }*/
-
 
     public Map<String, Sorter> getSorts() {
         return sorts;

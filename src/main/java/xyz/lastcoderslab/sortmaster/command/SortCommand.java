@@ -40,7 +40,15 @@ public class SortCommand implements ICommand{
             Message.send("Неверный аргумент", MessageType.ERROR);
             return;
         }
-        Sorter sorter = sortManager.doSort(args[0]);
+        int flag = 0;
+        if(args.length == 3) {
+            if(!args[2].matches("[0-2]+")) {
+                Message.send("Аргумент два должен быть одним из чисел 0, 1, 2", MessageType.ERROR);
+                return;
+            }
+            flag = Integer.parseInt(args[2]);
+        }
+        Sorter sorter = sortManager.doSort(args[0], flag);
         Message.send("Результаты сортировки " + args[0] + ":", MessageType.MAIN);
         System.out.println("Исходный массив:");
         System.out.println(DataManager.dataToPrint(sorter.getInputArray()));
@@ -54,10 +62,12 @@ public class SortCommand implements ICommand{
     @Override
     public String help() {
         String help = TextColor.BOLD + "" + TextColor.YEllOW + getName() + TextColor.RESET +
-                TextColor.YEllOW + " [ВидСортировки]" + TextColor.RESET +" - " + getDescription() + "\n";
+                TextColor.YEllOW + " [ВидСортировки]" + TextColor.BLUE + " <1|2> " + TextColor.RESET +" - " + getDescription() + "\n";
         for(String type : sorts.keySet()) {
             help += "   " + TextColor.YEllOW + type + TextColor.RESET + "\n";
         }
+        help += TextColor.BLUE + "   1 " + TextColor.RESET + "- сортировать только четные числа\n";
+        help += TextColor.BLUE + "   2 " + TextColor.RESET + "- сортировать только нечетные числа\n";
         return help;
     }
 }

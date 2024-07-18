@@ -1,13 +1,13 @@
 package xyz.lastcoderslab.sortmaster.manager.sorter;
 
 public interface AdaptiveSorter {
-    public long getSortingTime();
+    long getSortingTime();
 
-    public long getSwapCount();
+    long getSwapCount();
 
-    public Integer[] getInputArray();
+    Integer[] getInputArray();
 
-    public Integer[] getOutputArray();
+    Integer[] getOutputArray();
 
     void sort(Integer[] inputArray, int mode);
 }

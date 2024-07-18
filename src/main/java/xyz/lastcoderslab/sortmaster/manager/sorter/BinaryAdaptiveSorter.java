@@ -29,6 +29,7 @@ public class BinaryAdaptiveSorter implements AdaptiveSorter {
     public void sort(Integer[] inputArray, int mode) {
         this.inputArray = inputArray;
         swapCount = 0;
+        startTime = System.nanoTime();
         int[] sortedArrayPrimitive;
         switch (mode) {
             case 0:
@@ -37,13 +38,12 @@ public class BinaryAdaptiveSorter implements AdaptiveSorter {
                 break;
             case 1:
             case 2:
-                sortedArrayPrimitive = adaptiveInnerSort(Arrays.stream(inputArray).mapToInt(Integer::intValue).toArray(), mode);
+                sortedArrayPrimitive = adaptiveInnerSort(Arrays.stream(inputArray).mapToInt(Integer::intValue).toArray(), 2 - mode);
                 sortedArray = Arrays.stream(sortedArrayPrimitive).boxed().toArray(Integer[]::new);
                 break;
             default:
                 break;
         }
-
         endTime = System.nanoTime();
     }
 
@@ -84,7 +84,7 @@ public class BinaryAdaptiveSorter implements AdaptiveSorter {
     private int[] adaptiveInnerSort(int[] array, int mode) {
         int[] subarray = {};
         for (int i = 0; i < array.length; i++) {
-            if (array[i] % 2 == 2 - mode) {
+            if (array[i] % 2 == mode) {
                 subarray = addElement(subarray, array[i]);
                 System.out.println(Arrays.toString(subarray));
                 ;
@@ -93,7 +93,7 @@ public class BinaryAdaptiveSorter implements AdaptiveSorter {
         subarray = innerSort(subarray);
         int j = 0;
         for (int i = 0; i < array.length; i++) {
-            if (array[i] % 2 == 2 - mode) {
+            if (array[i] % 2 == mode) {
                 array[i] = subarray[j++];
             }
         }
