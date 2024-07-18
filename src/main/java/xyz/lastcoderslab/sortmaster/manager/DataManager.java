@@ -2,12 +2,10 @@ package xyz.lastcoderslab.sortmaster.manager;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
 import net.datafaker.Faker;
 import xyz.lastcoderslab.sortmaster.entity.CompareMe;
 
 import java.io.*;
-import java.lang.reflect.Type;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -108,13 +106,13 @@ public class DataManager {
     public <T extends Comparable<T>> void readDataFromFile(String filename, Class<T> clazz) {
         Gson gson = new Gson();
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
+            Comparable[] data = null;
             if (clazz.equals(Integer.class)) {
-                Integer[] data = gson.fromJson(reader, Integer[].class);
-                setData(data);
-            } else {
-                CompareMe[] data = gson.fromJson(reader, CompareMe[].class);
-                setData(data);
+                data = gson.fromJson(reader, Integer[].class);
+            } else if (clazz.equals(CompareMe.class)) {
+                data = gson.fromJson(reader, CompareMe[].class);
             }
+            setData(data);
         } catch (IOException e) {
             System.out.println("Ошибка чтения из файла: " + e.getMessage());
         }
