@@ -37,7 +37,7 @@ public class LoadCommand implements ICommand{
             if(args[0].equals("o")) {
                 dataManager.readDataFromFile(args[1], CompareMe.class);
             }
-            Message.send("Загружен массив:\n" + dataManager.dataToPrint(), MessageType.MAIN);
+            Message.send("Загружен массив:\n" + dataManager.dataToPrint());
             Message.send("Используйте его для последующих сортировок");
             return;
         }

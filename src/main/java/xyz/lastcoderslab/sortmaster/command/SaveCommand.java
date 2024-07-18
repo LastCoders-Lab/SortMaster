@@ -33,7 +33,7 @@ public class SaveCommand implements ICommand{
         }
         String fileName = DataManager.FILE_DIR + File.separator + "jsonFile.json";
         dataManager.writeDataToFile(fileName);
-        Message.send("Ваш массив сохранен в файле " + fileName, MessageType.MAIN);
+        Message.send("Ваш массив сохранен в файле: " + fileName);
     }
 
     @Override
